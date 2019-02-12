@@ -22,7 +22,15 @@ namespace Jint.Runtime.Interpreter
             _name = !string.IsNullOrEmpty(function.Id?.Name) ? function.Id.Name : null;
             _strict = function.Strict;
             _parameterNames = GetParameterNames(function);
-            _body = JintStatement.Build(engine, function.Body);
+
+            if (function.Expression)
+            {
+                _body = JintStatement.Build(engine, new ReturnStatement((Expression)function.Body));
+            }
+            else
+            {
+                _body = JintStatement.Build(engine, (BlockStatement)function.Body);
+            }
         }
 
         private string[] GetParameterNames(IFunction functionDeclaration)

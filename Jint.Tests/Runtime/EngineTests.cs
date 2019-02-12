@@ -205,6 +205,30 @@ namespace Jint.Tests.Runtime
         }
 
         [Fact]
+        public void ArrowFunctionCall()
+        {
+            RunTest(@"
+                var add = (a, b) => {
+                    return a + b;
+                }
+
+                var x = add(1, 2);
+                assert(x == 3);
+            ");
+        }
+
+        [Fact]
+        public void ArrowFunctionExpressionCall()
+        {
+            RunTest(@"
+                var add = (a, b) => a + b;
+
+                var x = add(1, 2);
+                assert(x === 3);
+            ");
+        }
+
+        [Fact]
         public void NewObjectsShouldUsePrivateProperties()
         {
             RunTest(@"
@@ -1127,7 +1151,7 @@ namespace Jint.Tests.Runtime
             {
                 Assert.Equal(1, e.LineNumber);
                 Assert.Equal(9, e.Column);
-                Assert.Equal("jQuery.js", e.Source);
+                Assert.Equal("jQuery.js", e.SourceText);
             }
         }
         #region DateParsingAndStrings

@@ -64,6 +64,7 @@ function output(d) {
             {
                 using (var writer = new StreamWriter(stream))
                 {
+
                     JsonSerializer.CreateDefault().Serialize(writer, doc);
                     writer.Flush();
 

@@ -63,6 +63,9 @@ namespace Jint.Runtime.Interpreter.Expressions
                 case Nodes.ArrayExpression:
                     return new JintArrayExpression(engine, (ArrayExpression) expression);
 
+                case Nodes.ArrowFunctionExpression:
+                    return new JintArrowFunctionExpression(engine, (IFunction) expression);
+
                 case Nodes.BinaryExpression:
                     return JintBinaryExpression.Build(engine, (BinaryExpression) expression);
 
@@ -344,7 +347,7 @@ namespace Jint.Runtime.Interpreter.Expressions
 
         protected JsValue[] BuildArgumentsWithSpreads(JintExpression[] jintExpressions)
         {
-            var args = new List<JsValue>(jintExpressions.Length);
+            var args = new System.Collections.Generic.List<JsValue>(jintExpressions.Length);
             for (var i = 0; i < jintExpressions.Length; i++)
             {
                 var jintExpression = jintExpressions[i];
@@ -380,11 +383,11 @@ namespace Jint.Runtime.Interpreter.Expressions
 
         private sealed class ArraySpreadProtocol : IteratorProtocol
         {
-            private readonly List<JsValue> _instance;
+            private readonly System.Collections.Generic.List<JsValue> _instance;
 
             public ArraySpreadProtocol(
                 Engine engine,
-                List<JsValue> instance,
+                System.Collections.Generic.List<JsValue> instance,
                 IIterator iterator) : base(engine, iterator, 0)
             {
                 _instance = instance;

@@ -7,6 +7,8 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Esprima" Version="1.0.0-beta-1070" />
+    <Reference Include="Esprima">
+      <HintPath>..\..\esprima-dotnet\src\Esprima\bin\Release\net45\Esprima.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

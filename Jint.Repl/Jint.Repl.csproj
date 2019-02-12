@@ -6,4 +6,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Jint\Jint.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Esprima">
+      <HintPath>..\..\esprima-dotnet\src\Esprima\bin\Release\net45\Esprima.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

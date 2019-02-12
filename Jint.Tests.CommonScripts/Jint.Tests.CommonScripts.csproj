@@ -16,4 +16,9 @@
     <PackageReference Include="xunit.runner.console" Version="2.4.1" />
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Esprima">
+      <HintPath>..\..\esprima-dotnet\src\Esprima\bin\Release\net45\Esprima.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>
