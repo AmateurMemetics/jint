@@ -6,6 +6,7 @@ using Jint.Runtime.Descriptors;
 using Jint.Runtime.Descriptors.Specialized;
 using Jint.Runtime.Environments;
 using Jint.Runtime.Interpreter;
+using Jint.Runtime.Interpreter.Expressions;
 
 namespace Jint.Native.Function
 {
@@ -73,9 +74,14 @@ namespace Jint.Native.Function
             {
                 // setup new execution context http://www.ecma-international.org/ecma-262/5.1/#sec-10.4.3
                 JsValue thisBinding;
+                
                 if (StrictModeScope.IsStrictModeCode)
                 {
                     thisBinding = thisArg;
+                }
+                else if (_function._function is ArrowFunctionExpression arrow)
+                {
+                    thisBinding = _engine.ExecutionContext.ThisBinding;
                 }
                 else if (thisArg._type == Types.Undefined || thisArg._type == Types.Null)
                 {

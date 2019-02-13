@@ -229,6 +229,21 @@ namespace Jint.Tests.Runtime
         }
 
         [Fact]
+        public void ArrowFunctionScope()
+        {
+            RunTest(@"
+                var bob = {
+                    _name: ""Bob"",
+                    _friends: [""Alice""],
+                    printFriends() {
+                        this._friends.forEach(f => assert(this._name === ""Bob"" && f === ""Alice""))
+                    }
+                };
+                bob.printFriends();
+            ");
+        }
+
+        [Fact]
         public void NewObjectsShouldUsePrivateProperties()
         {
             RunTest(@"
